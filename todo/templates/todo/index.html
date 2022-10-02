@@ -1,0 +1,187 @@
+{% load static %}
+<!doctype html>
+<html>
+    
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'todo/main.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+  <script>
+    tailwind.config = {
+        theme: {
+            screens:{
+                sm:'480px',
+                md: '768px',
+                lg:'976px',
+                xl:'1440px',
+
+            },
+            
+    colors: {
+      laven: '#c1b8ff',
+      orange: '#ff7849',
+      gunmetal:'#22262b',
+      charcoal:'#2f3438',
+      ame: '#9e92f0',
+
+    },
+    fontFamily: {
+        'sans': ['Helvetica', 'Arial', 'sans-serif']
+        
+    },
+    extend: {
+      spacing: {
+        '8xl': '96rem',
+        '9xl': '128rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
+      borderWidth: {
+      DEFAULT: '1px',
+      '0': '0',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
+      '6': '6px',
+      '8': '8px',
+    }
+    }
+    
+  }
+  
+    }
+  </script>
+  
+</head>
+<body>
+
+<div class="w-full bodymain" id="containerr" data-theme="lavendar">
+    
+      <div class="flex items-left justify-center h-screen">
+        <div class="logo text-xl font-semibold absolute left-4 top-4">
+          <div>team</div>
+          <div>capybara.</div>
+        </div>
+        <a class="p-2 absolute right-1 top-12 font-semibold z-10 logoutt" id="logout_btn" href="{% url 'logout' %}"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" viewBox="0 0 24 24"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg></a> 
+        
+        <button onclick="toggleFullScreen(document.body)" class="fullscren absolute top-3 right-3 z-10" >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" ><path d="M9.29,13.29,4,18.59V17a1,1,0,0,0-2,0v4a1,1,0,0,0,.08.38,1,1,0,0,0,.54.54A1,1,0,0,0,3,22H7a1,1,0,0,0,0-2H5.41l5.3-5.29a1,1,0,0,0-1.42-1.42ZM5.41,4H7A1,1,0,0,0,7,2H3a1,1,0,0,0-.38.08,1,1,0,0,0-.54.54A1,1,0,0,0,2,3V7A1,1,0,0,0,4,7V5.41l5.29,5.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42ZM21,16a1,1,0,0,0-1,1v1.59l-5.29-5.3a1,1,0,0,0-1.42,1.42L18.59,20H17a1,1,0,0,0,0,2h4a1,1,0,0,0,.38-.08,1,1,0,0,0,.54-.54A1,1,0,0,0,22,21V17A1,1,0,0,0,21,16Zm.92-13.38a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H17a1,1,0,0,0,0,2h1.59l-5.3,5.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V7a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"/></svg>
+        </button>
+
+        <button id="settings" class="settings p-4 my-5 border-4 pl-14"> <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24"><path d="M7,6H6V3A1,1,0,0,0,4,3V6H3A1,1,0,0,0,3,8H7A1,1,0,0,0,7,6ZM5,10a1,1,0,0,0-1,1V21a1,1,0,0,0,2,0V11A1,1,0,0,0,5,10Zm7,8a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V19A1,1,0,0,0,12,18Zm9-8H20V3a1,1,0,0,0-2,0v7H17a1,1,0,0,0,0,2h4a1,1,0,0,0,0-2Zm-2,4a1,1,0,0,0-1,1v6a1,1,0,0,0,2,0V15A1,1,0,0,0,19,14Zm-5,0H13V3a1,1,0,0,0-2,0V14H10a1,1,0,0,0,0,2h4a1,1,0,0,0,0-2Z"/></svg></button>
+        
+        <div class="h-130 absolute left-10 top-20 mt-20 flex flex-col navbar" id="navbar">
+          <button class=" text-white font-bold py-4 px-4 my-5 border-4  rounded-2xl" id="btn_task_list" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" " viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M184.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L39 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L39 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM256 96c0-17.7 14.3-32 32-32H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H288c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H288c-17.7 0-32-14.3-32-32zM192 416c0-17.7 14.3-32 32-32H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32zM80 464c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48z"/></svg>
+          </button>
+          <button class=" text-white font-bold py-4 px-4 my-5 border-4  rounded-2xl" id="btn_notes">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" "><path fill="#22262b;" d="M16,14H8a1,1,0,0,0,0,2h8a1,1,0,0,0,0-2Zm0-4H10a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm4-6H17V3a1,1,0,0,0-2,0V4H13V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H4A1,1,0,0,0,3,5V19a3,3,0,0,0,3,3H18a3,3,0,0,0,3-3V5A1,1,0,0,0,20,4ZM19,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V6H7V7A1,1,0,0,0,9,7V6h2V7a1,1,0,0,0,2,0V6h2V7a1,1,0,0,0,2,0V6h2Z"/></svg>
+          </button>
+          <button class=" text-white font-bold py-4 px-4 my-5 border-4  rounded-2xl" id="btn_qoutes">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" "><path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/></svg>
+          </button>
+          <button class=" text-white font-bold py-4 px-4 my-5 border-4 rounded-2xl" id="btn_palette">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" "><path fill="#c1b8ff;" d="M7.42,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41A1,1,0,0,0,7.42,15.54Zm0-8.49a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.41A1,1,0,0,0,7.42,7.05Zm4.95,10a1,1,0,1,0,1,1A1,1,0,0,0,12.37,17Zm-6-6a1,1,0,1,0,1,1A1,1,0,0,0,6.37,11Zm6-6a1,1,0,1,0,1,1A1,1,0,0,0,12.37,5Zm3.54,2.05a1,1,0,1,0,1.41,0A1,1,0,0,0,15.91,7.05Zm6.3,0a11,11,0,1,0-7.85,15.74,3.87,3.87,0,0,0,2.5-1.65A4.2,4.2,0,0,0,17.47,18a5.65,5.65,0,0,1-.1-1,5,5,0,0,1,3-4.56,3.84,3.84,0,0,0,2.06-2.25A4,4,0,0,0,22.21,7.08Zm-1.7,2.44a1.9,1.9,0,0,1-1,1.09A7,7,0,0,0,15.37,17a7.3,7.3,0,0,0,.14,1.4,2.16,2.16,0,0,1-.31,1.65,1.79,1.79,0,0,1-1.21.8,8.72,8.72,0,0,1-1.62.15,9,9,0,0,1-9-9.28A9.05,9.05,0,0,1,11.85,3h.51a9,9,0,0,1,8.06,5A2,2,0,0,1,20.51,9.52ZM12.37,11a1,1,0,1,0,1,1A1,1,0,0,0,12.37,11Z"/></svg>
+          </button>
+          <div class="palette_holder" id="palette_holder">
+            <div class="lavendar" id="lavendar"></div>
+            <div class="red" id="red"></div>
+            <div class="blue" id="blue"></div>
+            <div class="pink" id="pink"></div>
+            <div class="yellow" id="yellow"></div>
+            <div class="green" id="green"></div>   
+            <div class="orange" id="orange"></div> 
+          </div>
+
+        </div>
+        <div class="absolute left-1 bottom-2" style="width:22rem;">
+          <div class="grid grid-cols-5 grid-flow-row-dense gap-4 place-items-center music">
+
+            
+                  <h3 class="text-2xl pr-5 pl-5 songname font-medium col-span-2 ml-10" id="song-name"></h3>
+              <button class=" bg-transparent rounded-full" >
+                  <svg class="w-6 h-6 "xmlns="http://www.w3.org/2000/svg" id="prev-button" viewBox="0 0 20 20"><path d="M4 5h3v10H4V5zm12 0v10l-9-5 9-5z"/></svg>
+              </button>
+              <button class="py-4 ml-0 rounded-full bg-transparent " id="pause-button" style="display:none;">
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z"/></svg>
+              </button>
+              <button class="py-4 ml-0 rounded-full bg-transparent " id="play-button" style="display:block;">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </button>
+              <button class=" rounded-full bg-transparent">
+                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" id="next-button" viewBox="0 0 20 20"><path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z"/></svg>
+              </button>
+              <!-- <div class="now playing w-48 paused ml-36" id="music">
+                <span class="bar n1">A</span>
+                <span class="bar n2">B</span>
+                <span class="bar n3">c</span>
+                <span class="bar n4">D</span>
+                <span class="bar n5">E</span>
+                <span class="bar n6">F</span>
+                <span class="bar n7">G</span>
+                <span class="bar n8">H</span>
+              </div> -->
+              
+          </div>
+      </div>
+      <div class="time_holder">
+        <div class="clock font-semibold"  style="user-select: none;"></div>
+        <div class="text-xl font-semibold datemon" id="msg"></div>
+        <div class="text-center quotes"><div class="text-charcoal text-xl font-semibold" id="qoutes">Keep up the good work!</div></div>
+        </div>
+
+
+        
+
+        <div class="wrap absolute top-1 right-1 rounded-2xl text-sm " id="task_listt">
+          
+            <div class="task-list overflow-y-scroll bg-transparent rounded-xl no-scrollbar"  style="height: 20rem;">
+              <form class="add-new-task pt-0 pb-0 mt-0 " autocomplete="off" style="padding-bottom: 0px; ">
+                <input class=" bg-transparent intask" type="text" name="new-task" placeholder="Add a new item..." style=" box-shadow: none;"/>
+              </form>
+              <ul class="pt-5">
+                {% for task in tasks %}
+
+                <li>
+                  <span>{{ task.task }}</span>
+                  <button id="{{task.id}}" class="delete-button" name="{{task.task}}">X</button>
+                </li>
+                {% endfor %}
+
+              </ul>
+            </div>
+
+          </div>
+          
+
+         
+          <div>
+            <div class="sticky-right p-2 mt-32" style="width:20rem; height:18rem;"  id="notes">
+{% if notes|length == 0 %}
+<textarea class="textareaa rounded-2xl p-5 no-scrollbar text-gunmetal" style="width:20rem; height:15rem; resize: none;" placeholder="type your thoughts away......" id="notes-box">
+</textarea>
+{% else %} 
+<textarea class="textareaa rounded-2xl p-5 no-scrollbar text-gunmetal" style="width:20rem; height:15rem; resize: none;" id="notes-box">
+{{ notes }}
+</textarea>
+{% endif %}
+            </div>
+          </div>    
+          
+          <div class="absolute right-2 bottom-1 text-[#181B1F] text-sm" style="font-weight: 600;">&copy; team capybara</div>
+        </div>
+  </div>
+  <script src="{% static 'todo/main.js' %}">
+ 
+  </script>
+</body>
+</html>

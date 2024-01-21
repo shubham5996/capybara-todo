@@ -1,1 +1,5 @@
-django
+asgiref==3.7.2
+Django==5.0.1
+sqlparse==0.4.4
+traitlets==5.14.1
+tzdata==2023.4

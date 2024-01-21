@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-39lc*082+i0m*s(jfagdql=4=osr6px@is^hsjruz9cq)cxe^&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["capybara-todo.onrender.com"]
 
 
 # Application definition

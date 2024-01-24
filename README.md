@@ -1,7 +1,7 @@
 ## Capybara Todo
 
 This is a focus website bases on the pomodoro principles. 
-
+Access [here](https://capybara-todo.onrender.com)
 ## Features
 
 - Clock with date
@@ -17,3 +17,5 @@ Created for Hack@Plaksha by Abhinav Lodha, Hibah Ihsan, and Subham Jalan.
 
 ## Screenshots
 
+![Authorization](ss1.jpeg)
+![Website](ss2.jpeg)

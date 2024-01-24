@@ -14,3 +14,6 @@ This is a focus website bases on the pomodoro principles.
 
 
 Created for Hack@Plaksha by Abhinav Lodha, Hibah Ihsan, and Subham Jalan.
+
+## Screenshots
+

@@ -1,6 +1,6 @@
 ## Capybara Todo
 
-This is a focus website bases on the pomodoro principles. 
+This is a focus website based on the pomodoro principles. 
 Access [here](https://capybara-todo.onrender.com)
 ## Features
 
@@ -17,5 +17,5 @@ Created for Hack@Plaksha by Abhinav Lodha, Hibah Ihsan, and Subham Jalan.
 
 ## Screenshots
 
-![Authorization](ss1.jpeg)
-![Website](ss2.jpeg)
+![Authorization](public/ss1.jpeg)
+![Website](public/ss2.jpeg)
